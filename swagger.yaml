@@ -77,11 +77,11 @@ paths:
               allOf:
               - $ref: '#/components/schemas/CreateJobRequest'
               - example:
-                  company: facebook5232
-                  position: full-stack developer && AI
+                  company: Google
+                  position: full-stack developer 
             example:
-              company: facebook5232
-              position: full-stack developer && AI
+              company: Google
+              position: full-stack developer 
         required: true
       responses:
         '200':
@@ -211,7 +211,7 @@ components:
           type: string
       example:
         company: Yahoo
-        position: full-stack developer && AI
+        position: full-stack developer 
     UpdateJobRequest:
       title: UpdateJobRequest
       required:
