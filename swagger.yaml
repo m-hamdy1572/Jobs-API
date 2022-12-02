@@ -210,7 +210,7 @@ components:
         position:
           type: string
       example:
-        company: facebook5232
+        company: Yahoo
         position: full-stack developer && AI
     UpdateJobRequest:
       title: UpdateJobRequest
