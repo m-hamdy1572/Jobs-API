@@ -10,13 +10,17 @@ const cors = require('cors');
 const xssClean = require('xss-clean');
 const expressRateLimit = require('express-rate-limit');
 
+// Swagger && YAML
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 // connentDB
 const connentDB = require('./db/connect');
 const authenticationUser = require('./middleware/authentications');
 
 // routers
-const authRouter = require('./routes/aurh');
+const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
 
 
@@ -39,8 +43,9 @@ app.use(xssClean());
 
 
 app.get('/', (req, res) => {
-  res.send('Jobs API');
-})
+  res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
+});
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // routes
 app.use('/api/v1/auth', authRouter);
