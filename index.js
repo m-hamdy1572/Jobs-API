@@ -2,7 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
 const app = express();
-
+const path = require('path')
 // extra security packages
 const helmet = require('helmet');
 const cors = require('cors');
@@ -12,7 +12,7 @@ const expressRateLimit = require('express-rate-limit');
 // Swagger && YAML
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load(path.resolve(__dirname, './swagger.yaml'));
 
 // connentDB
 const connentDB = require('./db/connect');
