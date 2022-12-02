@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
 const app = express();
+const path = require('path');
 
 // extra security packages
 const helmet = require('helmet');
@@ -30,15 +31,21 @@ app.use(expressRateLimit({
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 }))
+
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xssClean());
 
 
+app.get('/', (req, res) => {
+  res.send('Jobs API');
+})
+
 // routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', authenticationUser, jobsRouter);
+
 
 
 app.use(notFoundMiddleware);
