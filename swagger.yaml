@@ -232,8 +232,8 @@ components:
       scheme: bearer
 security: []
 tags:
-- name: Misc
-  description: ''
+- name: Tasting API
+  description: 'development by mahmoud hamdi'
 - name: Authentication
   description: ''
 - name: Jobs
