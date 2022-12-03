@@ -40,9 +40,10 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xssClean());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const options = {
-  customCssUrl: './node_modules/swagger-ui-dist/swagger-ui.css'
+  customCssUrl: '/public/swagger-ui.css'
 };
 
 app.get('/', (req, res) => {
