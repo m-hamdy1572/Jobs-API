@@ -52,7 +52,7 @@ app.use(xssClean());
 
 
 const options = {
-  customCssUrl: '/public/index.html',
+  customCssUrl: '/public/swagger-ui.css',
 };
 
 app.get('/', (req, res) => {
