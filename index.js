@@ -43,7 +43,8 @@ app.use(xssClean());
 
 
 const options = {
-  customCssUrl: '/public/swagger-ui.css'
+  customCssUrl: '/public/swagger-ui.css',
+  customHRMLUrl:'/public/index.html'
 };
 
 app.get('/', (req, res) => {
