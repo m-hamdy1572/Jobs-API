@@ -4,7 +4,7 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://jobs-api-1812.vercel.app/api/v1
+- url: https://jobs-api-1812.vercel.app/api/v1 || https://jobsapi-1812.up.railway.app/api/v1
   variables: {}
 paths:
   /auth/register:
