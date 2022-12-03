@@ -60,8 +60,8 @@ app.get('/', (req, res) => {
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/api-docs', swaggerUI.serveFiles(swaggerDocument, options));
-app.get('/api-docs', swaggerUI.setup());
+app.use('/api-docs', swaggerUI.serve);
+app.get('/api-docs', swaggerUI.setup(swaggerDocument, options));
 
 // routes
 app.use('/api/v1/auth', authRouter);
