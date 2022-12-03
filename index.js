@@ -42,17 +42,17 @@ app.use(cors());
 app.use(xssClean());
 
 
-// const options = {
-//   customCssUrl: '/public/swagger-ui.css',
-// };
+const options = {
+  customCssUrl: '/public/swagger-ui.css',
+};
 
 app.get('/', (req, res) => {
   res.redirect('/api-docs');
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
-//app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve);
-app.get('/api-docs', swaggerUI.setup(swaggerDocument));
+app.get('/api-docs', swaggerUI.setup(swaggerDocument, options));
 
 // routes
 app.use('/api/v1/auth', authRouter);
