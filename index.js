@@ -42,8 +42,7 @@ app.use(cors());
 app.use(xssClean());
 
 const options = {
-  customCssUrl: './node_modules/swagger-ui-dist/swagger-ui.css',
-  customSiteTitle: "The Words That I Know API - Swagger"
+  customCssUrl: './node_modules/swagger-ui-dist/swagger-ui.css'
 };
 
 app.get('/', (req, res) => {
