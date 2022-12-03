@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
   res.redirect('/api-docs');
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
-app.use('/public', express.static(path.join(__dirname, 'public')));a
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve);
 app.get('/api-docs', swaggerUI.setup(swaggerDocument,options));
 
