@@ -35,6 +35,8 @@ app.use(expressRateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 }))
 
+
+app.use(cors());
 app.use( (req, res, next)=> {
   res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
@@ -46,21 +48,20 @@ app.use( (req, res, next)=> {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
 app.use(xssClean());
 
 
-const options = {
-  customCssUrl: '/public/swagger-ui.css',
-};
+// const options = {
+//   customCssUrl: '/public/swagger-ui.css',
+// };
 
 app.get('/', (req, res) => {
   res.redirect('/api-docs');
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
-app.use('/public', express.static(path.join(__dirname, 'public')));
+//app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve);
-app.get('/api-docs', swaggerUI.setup(swaggerDocument, options));
+app.get('/api-docs', swaggerUI.setup(swaggerDocument));
 
 // routes
 app.use('/api/v1/auth', authRouter);
