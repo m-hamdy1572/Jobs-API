@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
 });
 //app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve);
-app.get('/api-docs', swaggerUI.setup(swaggerDocument,options));
+app.get('/api-docs', swaggerUI.setup(swaggerDocument));
 
 // routes
 app.use('/api/v1/auth', authRouter);
