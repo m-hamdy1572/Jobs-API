@@ -44,11 +44,11 @@ app.use(xssClean());
 
 const options = {
   customCssUrl: '/public/swagger-ui.css',
-  customHRMLUrl:'/public/index.html'
 };
 
 app.get('/', (req, res) => {
   res.redirect('/api-docs');
+  res.setHeader('content-type', 'text/css');
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
 app.use('/public', express.static(path.join(__dirname, 'public')));
