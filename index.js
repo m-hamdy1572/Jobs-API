@@ -35,6 +35,7 @@ app.use(expressRateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 }))
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
@@ -45,7 +46,8 @@ app.get('/', (req, res) => {
   res.redirect('/api-docs');
   //res.send('<h1>Jobs API</h1> <a href="/api-docs">Documentation</a>');
 });
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use('/api-docs', swaggerUI.serve);
+app.get('/api-docs', swaggerUI.setup(swaggerDocument));
 
 // routes
 app.use('/api/v1/auth', authRouter);
