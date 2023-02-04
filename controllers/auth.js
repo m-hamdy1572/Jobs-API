@@ -1,9 +1,8 @@
 const User = require('../models/Users');
 const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, UnauthenticatedError } = require('../errors');
-const jwt = require('jsonwebtoken');
 const register = async (req, res) => {
-    const user = await User.create({ ...req.body });
+    const user = await User.create( req.body );
     // const token = jwt.sign({ userId: user._id, name: user.name }, process.env.JWT_SECTER, {
     //     expiresIn: '7d'
     // })

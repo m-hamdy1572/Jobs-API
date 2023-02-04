@@ -4,7 +4,8 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://jobs-api-1812.vercel.app/api/v1 
+- url:  https://jobs-api-1812.onrender.com/api/v1 
+- url:  http://localhost:1812/api/v1  
   variables: {}
 paths:
   /auth/register:
