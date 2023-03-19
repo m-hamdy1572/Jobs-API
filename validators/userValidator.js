@@ -4,7 +4,7 @@ const User = require('../models/Users');
 exports.signupValidator = [
   check('name')
     .notEmpty().withMessage('Name must be required')
-    .isLength({ min: 3, max: 50 }).withMessage('Name must be between 3 t0 50'),
+    .isLength({ min: 3, max: 50 }).withMessage('Name must be between 3 to 50 characters'),
   check('email')
     .notEmpty().withMessage('E-mail required')
     .isEmail().withMessage('E-mail invalid').custom(async (val) => {
@@ -16,7 +16,7 @@ exports.signupValidator = [
   ),
   check('password')
     .notEmpty().withMessage('Password required')
-    .isLength({ min: 6 }).withMessage('Password greater than 6 '),
+    .isLength({ min: 6 }).withMessage('Password must be at least 6 characters '),
   validatorMiddleWare,
 ];
 
@@ -26,6 +26,6 @@ exports.loginValidator = [
   .isEmail().withMessage('E-mail invalid'),
 check('password')
   .notEmpty().withMessage('Password required')
-  .isLength({ min: 6 }).withMessage('Password greater than 6 '),
+  .isLength({ min: 6 }).withMessage('Password must be at least 6 characters '),
 validatorMiddleWare,
 ]
