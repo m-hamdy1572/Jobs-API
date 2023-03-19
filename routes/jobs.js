@@ -6,9 +6,23 @@ const {
     getJob,
     createJob,
     updateJob,
-    deleteJob, } = require('../controllers/jobs');
+    deleteJob,
+} = require('../controllers/jobs');
 
-router.route('/').post(createJob).get(getAllJobs);
-router.route('/:id').get(getJob).delete(deleteJob).patch(updateJob);
+const {
+    createJobValidator,
+    getJobValidator,
+    updateJobValidator,
+    deleteJobValidator,
+} = require('../validators/jobValidator')
+
+
+router.route('/')
+    .post(createJobValidator, createJob)
+    .get(getAllJobs);
+router.route('/:id')
+    .get(getJobValidator, getJob)
+    .delete(deleteJobValidator, deleteJob)
+    .patch(updateJobValidator, updateJob);
 
 module.exports = router;

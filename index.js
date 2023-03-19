@@ -8,6 +8,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const xssClean = require('xss-clean');
 const expressRateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const compression = require('compression');
+const hpp = require('hpp');
 
 // Swagger && YAML
 const swaggerUI = require('swagger-ui-express');
@@ -27,22 +30,38 @@ const jobsRouter = require('./routes/jobs');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
-app.set('trust proxy', 1);
+// Enable other domains to access your application
+app.use(cors());
+
+// Compress all responses
+app.use(compression());
+
+// MiddleWare to parser request to json
+app.use(express.json());
+
+
+
+// To remove data using these defaults, To apply data sanitization
+// nosql mongo injection
+app.use(mongoSanitize());
+
+
+
+app.use(helmet());
+// To sanitize user input coming from POST body, GET queries, and url params  ex: '<script></script>' to convert string ''&lt;script>&lt;/script>''
+app.use(xssClean());
+
 app.use(expressRateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes,
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message:
+  'Too many accounts created from this IP, please try again after an 15 minutes'
 }))
 
 
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(helmet());
-app.use(xssClean());
 
-
+// Express middleware to protect against HTTP Parameter Pollution attacks
+app.use(hpp());
 
 app.get('/', (req, res, next) => {
   res.redirect('/api-docs');
