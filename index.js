@@ -83,7 +83,7 @@ app.use(errorHandlerMiddleware);
 const port = process.env.PORT || 1812;
 const start = async () => {
   try {
-    await connentDB(process.env.MONGO_URL);
+    await connentDB(process.env.MONGO_URI);
     app.listen(port, console.log(`Server Listen In http://localhost:${port}`));
   } catch (error) {
     console.log(error)
