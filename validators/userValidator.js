@@ -9,7 +9,7 @@ exports.signupValidator = [
   check('email')
     .notEmpty().withMessage('E-mail required')
     .isEmail().withMessage('E-mail invalid').custom(async (val) => {
-      const user = await User.findOne({ Email: val });
+      const user = await User.findOne({ email: val });
       if (user)
         throw new BadRequestError(`This E-mail is already used`);
       return true;
